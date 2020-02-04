@@ -1,16 +1,18 @@
-document.addEventListener('keydown', function(e) {
+function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`.btn[data-key="${e.keyCode}"]`)
-    if(!audio) return;
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('glow');
     audio.currentTime = 0;
     audio.play();
-    key.classList.add('keyPress');
-});
+  }
 
-function removeTransition(e) {
-    if(e.propertyName != 'transform') return;
-    this.classList.remove('keyPress');
-}
+function removeGlow(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('glow');
+  }
 
-const keys = document.querySelectorAll('.btn');
-keys.forEach(key => key.addEventListener('transitioned', removeTransition));
+const btn = document.querySelectorAll('.btn');
+document.addEventListener('keydown', playSound);
+btn.forEach(e => e.addEventListener('transitionend', removeGlow));
