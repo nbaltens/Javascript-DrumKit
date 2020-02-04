@@ -1,3 +1,3 @@
 # DrumKit
 
-DrumKit built with HTML, CSS, and Javascript
+DrumKit with audio functionality, built with HTML, CSS, and Javascript.
